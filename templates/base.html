@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+		{% block head %}<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+		<title>{% block title %}{% endblock %}</title>
+		<meta name="robots" content="index,follow" />
+		<meta name="author" content="Martin Hepp, Alex Stolz" />
+		<meta name="publisher" content="Martin Hepp" />{% block description %}
+		{% endblock %}
+		<meta name="keywords" content="{% block keywords %}pcs2owl, pcs, product classification, owl{% endblock %}" />
+		<meta name="generator" content="pcs2owl" />
+		<link rel="stylesheet" type="text/css" href="style.css" />
+		<link rel="stylesheet" type="text/css" media="print" href="print.css" />{% endblock %}
+	</head>
+	<body>
+		{% block header %}<div id="top">
+			<a href="http://www.ebusiness-unibw.org/"><img id="logo_researchgroup" src="logo_researchgroup.png" alt="E-Business + Web Science Research Group" /></a>
+		</div>{% endblock %}
+		{% block content %}{% endblock %}
+		{% block footer %}<!-- Additional static information -->
+		<div class="box">
+			<p class="top">[<a href="#top">back to top</a>]</p>
+			<h2 id="contact">Contact Information</h2>
+			<p><strong>Univ.-Prof. Dr. Martin Hepp</strong></p>
+			<p>
+				E-Business and Web Science Research Group<br/>
+				Chair of General Management and E-Business<br/>
+				Universität der Bundeswehr München<br/>
+				Werner-Heisenberg-Weg 39<br/>
+				D-85579 Neubiberg, Germany
+			</p>
+			<p>
+				<strong>Phone:</strong> +49 89 6004-4217<br/>
+				<strong>eMail:</strong> mhepp(at)computer.org (preferred mode of communication)<br/>
+				<strong>Web:</strong> http://www.heppnetz.de/<br/>
+				<strong>Web:</strong> http://www.unibw.de/ebusiness/<br/>
+			</p>
+		</div>
+		<div class="box">
+			<p class="top">[<a href="#top">back to top</a>]</p>
+			<h2 id="license">License</h2>
+			<p>
+				The {{title}} ontology is available under the <strong><a href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons Attribution-ShareAlike 3.0 Unported (CC BY-SA 3.0)</a></strong> license.
+			</p>
+		</div>
+		<div class="box">
+			<p class="top">[<a href="#top">back to top</a>]</p>
+			<h2 id="acknowledgements">Acknowledgements</h2>
+			<p>
+				We would like to thank (in alphabetical order) ... for valuable suggestions and feedback.
+			</p>
+			<p>
+				The work on the {{title}} ontology has been supported by the <a href="http://www.bmbf.de/en/">German Federal Ministry of Research (BMBF)</a> by a grant under the KMU Innovativ program as part of the <a href="http://www.intelligent-match.de/">Intelligent Match project</a> (FKZ 01IS10022B).<br />
+				<a href="http://www.bmbf.de/en/"><img id="bmbf" src="bmbf.png" alt="BMBF logo"/></a>
+			</p>
+		</div>
+		<div class="box">
+			<p class="top">[<a href="#top">back to top</a>]</p>
+			<h2 id="references">References</h2>
+			<p>
+				<strong>Hepp, Martin:</strong> <em><a href="http://www.heppnetz.de/files/GoodRelationsEKAW2008-crc-final.pdf">GoodRelations: An Ontology for Describing Products and Services Offers on the Web</a></em>, Proceedings of the 16th International Conference on Knowledge Engineering and Knowledge Management (EKAW2008), Acitrezza, Italy, September 29 - October 3, 2008, Springer LNCS, Vol 5268, pp. 332-347.
+			</p>
+		</div>{% endblock %}
+	</body>
+</html>

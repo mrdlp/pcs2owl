@@ -1,0 +1,24 @@
+{% extends "templates/base.html" %}
+{% block head %}{{ super() }}{% endblock %}
+{% block title %}{{title}} Individual: {{idf}}{% endblock %}
+{% block description %}{% if description %}{{ super() }}<meta name="description" content="{{description}}" />{% endif %}{% endblock %}
+{% block keywords %}ontology, {{ super() }}{% endblock %}
+{% block header %}{{ super() }}{% endblock %}
+{% block content %}
+		<h1 style="clear:both">The {{title}} Ontology: Instance Definition for "{{idf}}"</h1>
+		<h2>{{ns}}:{{idf}} <span class="rdf_type">(rdf:type {{types}})</span></h2>
+		<p class="left_align">{% if idref %}
+			<strong>URI</strong> <a href="{{idref}}">{{idref}}</a><br />{% endif %}{% for label in labels %}
+			<strong><a href="{{rdfs}}label">rdfs:label</a></strong> {{label}} @{{label.language}}<br />{% endfor %}
+		</p>{% if description %}
+		<div class="comment">
+			<p class="comment_p1"><a href="{{rdfs}}comment">rdfs:comment</a></p>
+			<p>{{description}} @{{description.language}}</p>
+		</div>{% endif %}
+		<p class="left_align">{% if uom %}
+			<strong><a href="{{gr}}hasUnitOfMeasurement">gr:hasUnitOfMeasurement</a></strong> {{uom}}<br />{% endif %}
+		</p>{% if descriptions %}
+		<h3>Translation(s)</h3>{% for description in descriptions %}
+		<p>{{description}} @{{description.language}}</p>{% endfor %}{% endif %}
+{% endblock %}
+{% block footer %}{{ super() }}{% endblock %}

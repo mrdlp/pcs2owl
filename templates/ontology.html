@@ -1,0 +1,29 @@
+{% extends "templates/base.html" %}
+{% block head %}{{ super() }}{% endblock %}
+{% block title %}OWL Ontology of the {{title}} Product Classification Standard{% endblock %}
+{% block description %}{% if description %}{{ super() }}<meta name="description" content="{{description}}" />{% endif %}{% endblock %}
+{% block keywords %}ontology, {{ super() }}{% endblock %}
+{% block header %}{{ super() }}{% endblock %}
+{% block content %}
+		<h1 style="clear:both">The {{title}} Ontology: Good identifiers for product types based on {{title}}</h1>
+		<h2>{{ns}}:{{idf}} <span class="rdf_type">(rdf:type {{type}})</span></h2>
+		<p class="left_align">{% if idref %}
+			<strong>URI</strong> <a href="{{idref}}">{{idref}}</a><br />{% endif %}{% if label %}
+			<strong><a href="{{rdfs}}label">rdfs:label</a></strong> {{label}}<br />{% endif %}
+		</p>{% if description %}
+		<div class="comment">
+			<p class="comment_p1"><a href="{{rdfs}}comment">rdfs:comment</a></p>
+			<p>{{description}}</p>
+		</div>{% endif %}
+		<p class="left_align">{% if subject %}
+			<strong><a href="{{dc}}subject">dc:subject</a></strong> {{subject}}<br />{% endif %}{% if creator %}
+			<strong><a href="{{dc}}creator">dc:creator</a></strong> {{creator}}<br />{% endif %}{% if contributor %}
+			<strong><a href="{{dc}}contributor">dc:contributor</a></strong> {{contributor}}<br />{% endif %}{% if rights %}
+			<strong><a href="{{dc}}rights">dc:rights</a></strong> {{rights}}<br />{% endif %}{% if license %}
+			<strong><a href="{{dcterms}}license">dcterms:license</a></strong> {{license}}<br />{% endif %}{% if version %}
+			<strong><a href="{{owl}}versionInfo">owl:versionInfo</a></strong> {{version}}<br />{% endif %}{% if seeAlso %}
+			<strong><a href="{{rdfs}}seeAlso">rdfs:seeAlso</a></strong> {{seeAlso}}<br />{% endif %}
+		</p>
+		
+{% endblock %}
+{% block footer %}{{ super() }}{% endblock %}

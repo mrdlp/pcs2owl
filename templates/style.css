@@ -1,0 +1,88 @@
+/* Style for E-Business and Web Science Research Group */
+
+body {
+  padding: 1em 4em 1em 4em;
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: justify;
+  color: black;
+  background: white;
+}
+
+.comment {
+	border: 1px solid #aaa;
+	padding: 1em;
+}
+
+.box {
+	margin-top: 12px;
+	padding-top: 6px;
+	padding-bottom: 16px;
+	border-top: 1px solid #aaa;
+}
+.box h2, .box h3 {
+	clear:both;
+}
+.comment_p1 {
+	font-weight: bold;
+}
+.deprecated {
+	color: #ff0000;
+	font-weight: bold;
+}
+div.img_caption {
+	font-size: 80%;
+	text-align: center;
+}
+
+img#logo_researchgroup { float:left; padding: 0 0 3em 0; }
+img#logo_gr { float:right; padding: 0 0 3em 0; }
+.rdf_type { font-size: 75%; float:right; }
+.top {
+	float: right;
+	font-size: 80%;
+	margin: -15px 0 0 0;
+	padding: 0 6px 0 6px;
+	background-color: #FFF;
+}
+p.inner_predefined { padding: 6px 0 3px 0; margin: 0; }
+p.left_align { text-align: left; }
+span.item_list { padding-left: 0.5em; word-spacing: 1em; }
+
+:link { color: #00C; background: transparent }
+:visited { color: #609; background: transparent }
+a:active { color: #C00; background: transparent }
+
+a:link img, a:visited img { border-style: none } /* no border on img links */
+
+a img { color: white; }        /* trick to hide the border in Netscape 4 */
+@media all {                   /* hide the next rule from Netscape 4 */
+  a img { color: inherit; }    /* undo the color change above */
+}
+
+strong a:link, strong a:visited, strong a:active { color:black; text-decoration:none; }
+.comment a:link, .comment a:visited, .comment a:active { color:black; text-decoration:none; }
+.comment_p1 a:link, .comment_p1 a:visited, .comment_p1 a:active { color:black; text-decoration:none; }
+strong a:hover, .comment_p1 a:hover, .comment a:hover { text-decoration: underline; }
+
+h1, h2, h3, h4, h5, h6 { text-align: left }
+
+h1, h2, h3 { color: #36c; background: white; font-weight: normal; }
+h1 { font-size: 200%; }
+h2 { font-size: 150%; }
+h3 { font-size: 120%; }
+h4 { font-size: 100%; font-weight: bold; }
+h5 { font-size: 85%; font-weight: bold; }
+h6 { font-size: 75%; font-weight: bold; }
+
+h1, h2, h3, h4, h5, h6 {
+	border-bottom: 0px solid #aaa;
+}
+
+pre { margin-left: 2em; border: 1pt solid #AEBDCC;
+	background-color: #F3F5F7; padding: 5pt;
+	font-family: courier, monospace;
+	white-space: pre;
+}
+
+pre, code { font-family: monospace } /* navigator 4 requires this */
