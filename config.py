@@ -12,7 +12,7 @@ from rdflib import *
 import os
 import sys
 
-ns = "google" #"proficlass" # namespace prefix name of local data
+ns = "eco11" # "google" #"proficlass" # namespace prefix name of local data
 if len(sys.argv) > 1:
 	ns = sys.argv[1]
 #lang = "de" # global language
@@ -56,6 +56,15 @@ pre_pcs = {
 		"include_annotationprops": True,
 		"dump_mode": False,
 		"base_uri": "http://www.intelligent-match.de/eco6/",
+		"create_dump": True,
+		"out_dir": "output/product_classification_standards",
+		"hashcode_select": ""
+	},
+	"eco11": {
+		"lang":"en",
+		"include_annotationprops": True,
+		"dump_mode": True,
+		"base_uri": "http://www.intelligent-match.de/eco11/",
 		"create_dump": True,
 		"out_dir": "output/product_classification_standards",
 		"hashcode_select": ""
