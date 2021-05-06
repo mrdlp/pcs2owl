@@ -5,7 +5,7 @@ eco11.py
 
 eCl@ss 11.X import module
 
-Created by Miguel Ramos on 2021-05-06.
+Created by Miguel Ramos on 2021-05-06 based on Alexander Stolz's work.
 """
 import codecs
 import csv
