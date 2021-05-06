@@ -350,10 +350,10 @@ def triple(g, subject, predicate, object, datatype=None, language=None):
 			return False
 		# check if language tag is given
 		if language != None:
-			pass # object.language = language
+			object._language = language
 		# if no language tag is given, check if datatype is available
 		elif datatype != None:
-			object.datatype = datatype
+			object._datatype = datatype
 	elif type(object) == rdflib.URIRef:
 		if object.title() == "":
 			return False
