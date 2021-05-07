@@ -25,8 +25,8 @@ def importData():
 	print "loading class synonyms"
 	synonym_en = csv.reader(open("pcs/eco11/eClass11_1_KW_en.csv", "r"), delimiter=";")
 	for line in list(synonym_en)[1:]:
-		idcl = line[3]
-		desc = line[5]
+		idcl = line[3]		# IdCC/IdPR
+		desc = line[4]		# KeywordValue/SynonymValue
 		if not idcl in names:
 			names[idcl] = []
 		names[idcl].append(desc)
@@ -36,9 +36,9 @@ def importData():
 	artclass = csv.reader(open("pcs/eco11/eClass11_1_CC_en.csv", "r"), delimiter=";")
 	for line in list(artclass)[1:]:
 		# CLASS: def __init__(self, parent_id, class_id, label="", description=""):
-		idcl = line[1]
-		code = line[6]
-		desc = line[7]
+		idcl = line[1]		# IdCC
+		code = line[6] 		# CodedName
+		desc = line[7] 		# PreferredName
 		codes[code] = idcl # append idcl with key of coded name
 		if not idcl in names:
 			names[idcl] = []
@@ -68,8 +68,8 @@ def importData():
 	print "loading feature2classes mapping"
 	class2featuremap = csv.reader(open("pcs/eco11/eClass11_1_CC_PR_en.csv", "r"), delimiter=";")
 	for line in list(class2featuremap)[1:]:
-		idcl = line[1]
-		idatt = line[4]
+		idcl = line[1]		# IdCC
+		idatt = line[4]		# IdPR
 		if idatt not in feature2classes:
 			feature2classes[idatt] = []
 		feature2classes[idatt].append(idcl)
@@ -78,33 +78,35 @@ def importData():
 	print "loading features"
 	feature = csv.reader(open("pcs/eco11/eClass11_1_PR_en.csv", "r"), delimiter=";")
 	for line in list(feature)[1:]:
-		idatt = line[1]
+		idatt = line[1]												# IdPR
 		domain = []
 		if idatt in feature2classes:
 			domain = feature2classes[idatt]
-		label = line[6]
-		description = line[8]
-		format = line[14]
-		symbol = line[15] # e.g. mm for millimetres
-		uom = line[16] # e.g. MMT for millimetres
-		attribute_type = line[20] # e.g. direct (es erfolgt ein freier Eintrag) or indirect (Werte sind vorhanden)
+		label = line[6]												# PreferredName
+		description = line[8]										# Definition
+		format = line[19]											# DataType
+		symbol = line[15] # e.g. mm for millimetres					# ISOCountryCode
+		uom = line[16] # e.g. MMT for millimetres					# Category
+		attribute_type = line[17] # e.g. direct (es erfolgt ein freier Eintrag) or indirect (Werte sind vorhanden)
 		valency = line[21] # e.g. univalent (es wird genau ein Wert zugeordnet) or multivalent (Werte unbestimmter Anzahl werden zugeordnet)
-		
+
 		datatype = "string"
 		object_type = "datatype"
 		# http://www.heppnetz.de/projects/eclassowl/#gentax-properties
 		if attribute_type == "indirect":
 			object_type = "qualitative"
 		elif format:
-			if format[0] == "V": # boolean value
+			if "BOOLEAN" in format: # boolean value
 				object_type = "datatype"
 				datatype = "boolean"
-			elif "NR2" in format or "NE3" in format: # rational or exponential
+			elif "REAL" in format or "RATIONAL" in format: # rational or exponential
 				object_type = "quantitative"
 				datatype = "float"
-			elif "NR1" in format: # decimal
+			elif "INTEGER" in format: # decimal
 				object_type = "quantitative" # NR1 case has to be mapped manually, e.g. 10 properties ca. are datatype properties
 				datatype = "integer"
+			elif "DATE" in format:
+				datatype = "date"
 			
 		feature2type[idatt] = {}
 		feature2type[idatt]["object_type"] = object_type
@@ -130,9 +132,9 @@ def importData():
 	print "loading values"
 	value = csv.reader(open("pcs/eco11/eClass11_1_VA_en.csv", "r"), delimiter=";")
 	for line in list(value)[1:]:
-		idvl = line[1]
-		label = line[6]
-		description = line[7]
+		idvl = line[1]					# IdVA
+		label = line[6]					# PreferredName
+		description = line[8]			# Definition
 		if line[8]:
 			description = line[8]
 		if idvl in value2features:
