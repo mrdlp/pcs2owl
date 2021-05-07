@@ -536,6 +536,8 @@ def convert2OWL(element_type=None):
 					triple(g, idref, RDFS.range, XSD.int)
 				elif datatype == "boolean":
 					triple(g, idref, RDFS.range, XSD.boolean)
+				elif datatype == "date":
+					triple(g, idref, RDFS.range, XSD.dateTime)
 				else:
 					triple(g, idref, RDFS.range, XSD.string)
 			else: # supposed to be qualitative
