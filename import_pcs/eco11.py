@@ -37,7 +37,7 @@ def importData():
 	for line in list(artclass)[1:]:
 		# CLASS: def __init__(self, parent_id, class_id, label="", description=""):
 		idcl = line[1]		# IdCC
-		code = line[6] 		# CodedName
+		code = line[6] 		# CodedName e.g. 13000000
 		desc = line[7] 		# PreferredName
 		codes[code] = idcl # append idcl with key of coded name
 		if not idcl in names:
@@ -55,12 +55,16 @@ def importData():
 				if parent in codes:
 					#print "%s (%s) is parent of %s (%s)" %(parent, codes[parent], code, codes[code])
 					break
+		# save hierarchy code e.g. hc = 13000000
+		hc = code
 		code = codes[code]
 		if parent == "00000000":
 			parent = None
 		else:
+			pass
 			parent = codes[parent]
-		cappend(Class(parent, code, desc, desc, synonyms={"en":names[idcl]}))
+		#print parent, code, desc
+		cappend(Class(parent, code, desc, desc, synonyms={"en":names[idcl]}, hierarchy_code=hc))
 	
 	# feature
 	# PROPERTY: def __init__(self, class_id, prop_id, label="", description="", prop_type=["qualitative", "string"]):
@@ -103,7 +107,7 @@ def importData():
 				object_type = "quantitative"
 				datatype = "float"
 			elif "INTEGER" in format: # decimal
-				object_type = "quantitative" # NR1 case has to be mapped manually, e.g. 10 properties ca. are datatype properties
+				# object_type = "quantitative" # Big majority are datatype!  NR1 case has to be mapped manually, e.g. 10 properties ca. are datatype properties
 				datatype = "integer"
 			elif "DATE" in format:
 				datatype = "date"
