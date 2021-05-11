@@ -434,7 +434,11 @@ def gentax(classes):
 		if len(synonyms) > 0: # make sure we stay in OWL DL
 			triple(g, SKOS.altLabel, RDF.type, OWL.AnnotationProperty)
 		triplifyResource(idref_tax, SKOS.altLabel, synonyms)
-		triple(g, idref_tax, SELF.hierarchyCode, Literal(c.id))
+		# include hierarchy code as an annotation, if not given then use class id
+		if c.hierarchy_code:
+			triple(g, idref_tax, SELF.hierarchyCode, Literal(c.hierarchy_code))
+		else:
+			triple(g, idref_tax, SELF.hierarchyCode, Literal(c.id))
 		triple(g, idref_tax, RDFS.isDefinedBy, URIRef(""))
 		# serialize and reset
 		if not config.dump_mode:
