@@ -22,12 +22,13 @@ class Ontology:
 		self.seeAlso = seeAlso
 
 class Class:
-	def __init__(self, parent_id, class_id, label="", description="", synonyms=""):
+	def __init__(self, parent_id, class_id, label="", description="", synonyms="", hierarchy_code=None):
 		self.parent_id = parent_id
 		self.id = class_id
 		self.label = label
 		self.description = description
 		self.synonyms = synonyms
+		self.hierarchy_code = hierarchy_code
 		
 class Property:
 	def __init__(self, class_id, prop_id, label="", description="", prop_type=["qualitative", "string"]):
