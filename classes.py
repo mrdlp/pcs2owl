@@ -31,12 +31,13 @@ class Class:
 		self.hierarchy_code = hierarchy_code
 		
 class Property:
-	def __init__(self, class_id, prop_id, label="", description="", prop_type=["qualitative", "string"]):
+	def __init__(self, class_id, prop_id, label="", description="", prop_type=["qualitative", "string"], synonyms=""):
 		self.domain = class_id
 		self.id = prop_id
 		self.label = label
 		self.description = description
 		self.type = prop_type # [<objecttype>, <datatype>], e.g. ["quantitative", "float"]
+		self.synonyms = synonyms
 		
 class Individual:
 	def __init__(self, prop_id, inst_id, label="", description="", inst_type=["qualitative", "string"], uom=""):
