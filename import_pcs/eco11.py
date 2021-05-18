@@ -93,6 +93,8 @@ def importData():
 		uom = line[16] # e.g. MMT for millimetres					# Category
 		attribute_type = line[17] # e.g. direct (es erfolgt ein freier Eintrag) or indirect (Werte sind vorhanden)
 		valency = line[21] # e.g. univalent (es wird genau ein Wert zugeordnet) or multivalent (Werte unbestimmter Anzahl werden zugeordnet)
+		if not idatt in names:
+			names[idatt] = []
 
 		datatype = "string"
 		object_type = "datatype"
@@ -117,10 +119,10 @@ def importData():
 		feature2type[idatt]["datatype"] = datatype
 		if len(domain) > 0:
 			for d in domain:
-				pappend(Property(d, idatt, label, description, prop_type=[object_type, datatype]))
+				pappend(Property(d, idatt, label, description, prop_type=[object_type, datatype], synonyms={"en":names[idatt]}))
 		else:
 			#print "could not determine domain for property", idatt, "- domain:", domain
-			pappend(Property(None, idatt, label, description, prop_type=[object_type, datatype]))
+			pappend(Property(None, idatt, label, description, prop_type=[object_type, datatype], synonyms={"en":names[idatt]}))
 		
 	value2features = {}
 	print "loading features2value mapping"
