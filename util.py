@@ -571,7 +571,13 @@ def convert2OWL(element_type=None):
 					domains[idf] = []
 				cidf_gen = "C_"+p.domain+"-gen"
 				domains[idf].append(URIRef(cidf_gen))
-			
+
+			# include synonyms of properties
+			synonyms = p.synonyms
+			if len(synonyms) > 0:
+				triple(g, SKOS.altLabel, RDF.type, OWL.AnnotationProperty)
+			triplifyResource(idref, SKOS.altLabel, synonyms)
+
 		print "\t\tprocessing %d domains of properties (len g = %d)" % (len(domains), len(g))
 		# append domains to bnode unionof construct... very very slow
 		for k, v in domains.items():
