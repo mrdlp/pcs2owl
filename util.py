@@ -492,6 +492,8 @@ def convert2OWL(element_type=None):
 		triple(g, idref, RDFS.seeAlso, rdflib.URIRef(metadata.seeAlso))
 		triple(g, idref, OWL.imports, rdflib.URIRef(ontologies["gr"][:-1]))
 		triple(g, SELF.hierarchyCode, RDF.type, OWL.AnnotationProperty)
+		triple(g, SELF.UnitOfMeasurementName, RDF.type, OWL.AnnotationProperty)
+		triple(g, SELF.UnitOfMeasurementSymbol, RDF.type, OWL.AnnotationProperty)
 		if include_annotationprops:
 			triple(g, SELF.recommendedValue, RDF.type, OWL.AnnotationProperty)
 			triple(g, SELF.recommendedProperty, RDF.type, OWL.AnnotationProperty)
@@ -556,7 +558,7 @@ def convert2OWL(element_type=None):
 				description = p.description
 			triplifyResource(idref, RDFS.comment, description)
 			triple(g, idref, RDFS.isDefinedBy, URIRef(""))
-					
+
 			# attach annotations if required
 			if include_annotationprops and idf in recommended_values:
 				for iidf in set(recommended_values[idf]):
@@ -577,6 +579,12 @@ def convert2OWL(element_type=None):
 			if len(synonyms) > 0:
 				triple(g, SKOS.altLabel, RDF.type, OWL.AnnotationProperty)
 			triplifyResource(idref, SKOS.altLabel, synonyms)
+
+			# attach unit of measurement if given
+			if p.UnitOfMeasurementName:
+				triple(g, idref, SELF.UnitOfMeasurementName, Literal(p.UnitOfMeasurementName))
+			if p.UnitOfMeasurementSymbol:
+				triple(g, idref, SELF.UnitOfMeasurementSymbol, Literal(p.UnitOfMeasurementSymbol))
 
 		print "\t\tprocessing %d domains of properties (len g = %d)" % (len(domains), len(g))
 		# append domains to bnode unionof construct... very very slow
